@@ -14,12 +14,13 @@ public class Node {
 	boolean isNexthop = false;
 
 	/**
+     * Constructor of object that sets ip and mask strings of node.
+     * If this constructor calls, this node will contain prefix as well.
+     *
 	 * @author Soroush
 	 * @param ip
 	 * @param mask
 	 * @param isNexthop
-	 * constructor of object that sets ip and mask strings of node.
-	 * if this constructor calls, this node will contain prefix as well.
 	 */
 	public Node(String ip, String mask, boolean isNexthop) {
 		this.ip = ip;
@@ -28,10 +29,10 @@ public class Node {
 	}
 	
 	/**
+     * Constructor for this object. Node will be an empty node.
 	 * @author Soroush
 	 * @param ip
 	 * @param mask
-	 * second constructor for this object. node will be an empty node.
 	 */
 	public Node(String ip, String mask) {
 		this.ip = ip;
@@ -39,118 +40,140 @@ public class Node {
 	}
 	
 	/**
+     * Getter for ip.
+     *
 	 * @author Soroush
-	 * @return getter for ip.
+	 * @return
 	 */
 	public String getIp() {
 		return ip;
 	}
 	
 	/**
+     * Getter for mask.
+     *
 	 * @author Soroush
-	 * @return getter for mask.
+	 * @return
 	 */
 	public String getMask() {
 		return mask;
 	}
 
 	/**
+     * Get left child node of this node.
+     *
 	 * @author Soroush
-	 * @return left child node of this node.
+	 * @return
 	 */
 	public Node getLeft() {
 		return left;
 	}
 
 	/**
+     * Set left child node of this node.
+     *
 	 * @author Soroush
 	 * @param left
-	 * sets left child node of this node.
 	 */
 	public void setLeft(Node left) {
 		this.left = left;
 	}
 
 	/**
+     * get right child node of this node.
 	 * @author Soroush
-	 * @return right child node of this node.
+	 * @return
 	 */
 	public Node getRight() {
 		return right;
 	}
 
 	/**
+     * Sets right child node of this node.
+     *
 	 * @author Soroush
 	 * @param right
-	 * sets right child node of this node.
 	 */
 	public void setRight(Node right) {
 		this.right = right;
 	}
 	
 	/**
+     * Get weight of node.
+     *
 	 * @author Soroush
-	 * @return weight of this node
+	 * @return
 	 */
 	public int getWeight() {
 		return weight;
 	}
 
 	/**
+     * Setter for weight of node.
+     *
 	 * @author Soroush
 	 * @param weight
-	 * setter for weight of node.
 	 */
 	public void setWeight(int weight) {
 		this.weight = weight;
 	}
 	
 	/**
+     * Return true if the node contains prefix.
+     *
 	 * @author Soroush
-	 * @return true if the node contains prefix.
+	 * @return
 	 */
 	public boolean isNexthop() {
 		return isNexthop;
 	}
 	
 	/**
+     * Set prefix containing of node to in put boolean.
+     *
 	 * @author Soroush
 	 * @param isNexthop
-	 * sets prefix containing of node to in put boolean.
 	 */
 	public void setNexthop(boolean isNexthop) {
 		this.isNexthop = isNexthop;
 	}
 	
 	/**
+     * Return true if current node is a leaf node in it's trie.
+     *
 	 * @author Soroush
-	 * @return true if current node is a leaf node in it's trie.
+	 * @return
 	 */
 	public boolean isLeaf() {
 		return this.getLeft() == null && this.getRight() == null;
 	}
 	
 	/**
+     * Check if current node has a right child node.
+     *
 	 * @author Soroush
-	 * @return true if current node has a right child node.
+	 * @return
 	 */
 	public boolean hasRight() {
 		return this.getRight() != null;
 	}
 	
 	/**
+     * Check if current node has a left child.
+     *
 	 * @author Soroush
-	 * @return true if current node has a left child node.
+	 * @return
 	 */
 	public boolean hasLeft() {
 		return this.getLeft() != null;
 	}
 	
 	/**
+     * Changes the node ip and mask string into input node's ip and mask strings.
+     * this node will be a prefix containing node.
+     *
 	 * @author Soroush
 	 * @param node
-	 * changes the node ip and mask string into input node's ip and mask strings.
-	 * this node will be a prefix containing node.
 	 */
 	public void setNode(Node node) {
 		this.ip = node.ip;
@@ -159,25 +182,28 @@ public class Node {
 	}
 	
 	/**
+     * Check if this node and the input node are equal.
 	 * @author Soroush
 	 * @param node
-	 * @return true if this node and the input node are equal.
+	 * @return
 	 */
 	public boolean equal(Node node) {
 		return this.ip.equals(node.ip) && this.mask.equals(node.mask);
 	}
 	
 	/**
+     * The node will assume null node from now on.
+     *
 	 * @author Soroush
-	 * the node will assume null node from now on.
 	 */
 	public void clear() {
 		this.setNexthop(false);
 	}
 	
 	/**
+     * Retrun string encoded value of node.
+     *
 	 * @author Soroush
-	 * (for testing purpose)
 	 */
 	@Override
 	public String toString() {
@@ -191,9 +217,6 @@ public class Node {
 				break;
 			}
 		}
-//		if (this.getWeight() > 0) {
-//			ret += "(w:" + this.getWeight() + ")";
-//		}
 		if (this.isNexthop()) {
 			ret += "(p)";
 		}

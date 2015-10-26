@@ -7,7 +7,7 @@ import objects.Node;
 
 /**
  * @author Soroush
- * this object applys sub-tree split algorithm to a binary tie and builds bucket-list, containing buckets of prefixes.
+ * This object applys sub-tree split algorithm to a binary tie and builds bucket-list, containing buckets of prefixes.
  * the trie will be empty at the end of the algorithm. this object has integer 'prefixes' that is number of prefixes per bucket.
  * as we mentioned bucket-list named 'bucks' will be list of buckets full of prefixes.
  */
@@ -17,10 +17,10 @@ public class SubtreeSplit {
 	BinaryTrie tree;
 	
 	/**
+     * This function is the cunstructor of object gets trie and bucket-list and fills them using algorithms.
 	 * @author Soroush
 	 * @param tree
 	 * @param bucks
-	 * this function is the cunstructor of object gets trie and bucket-list and fills them using algorithms.
 	 */
 	public SubtreeSplit(BinaryTrie tree, BucketList bucks) {
 		this.bucks = bucks;
@@ -48,11 +48,12 @@ public class SubtreeSplit {
 	}
 
 	/**
+     * Remove sub-tree with parent node "n" from it's trie and adds it's prefixes to bucket with index "b".
+     * This function splits sub-tree, using recursive LRV algorithm.
+     *
 	 * @author Soroush
 	 * @param n
 	 * @param b
-	 * removes sub-tree with parent node "n" from it's trie and adds it's prefixes to bucket with index "b".
-	 * this function splits sub-tree, using recursive LRV algorithm.
 	 */
 	private void split(Node n, int b) {
 		if (n.hasLeft()) {
@@ -73,9 +74,10 @@ public class SubtreeSplit {
 	}
 
 	/**
+     * This function gets a node in a trie and weights the sub-tree.
+     *
 	 * @author Soroush
 	 * @param node
-	 * this function gets a node in a trie and weights the sub-tree
 	 */
 	private void weight(Node node) {
 		int left = 0, right = 0;
@@ -99,11 +101,13 @@ public class SubtreeSplit {
 	}
 	
 	/**
+     * Parent of a sub-tree for sub-tree split function. The parent's weight must in [b/2 , b].
+     * This function finds sub-tree recursively.
+     *
 	 * @author Soroush
 	 * @param node
 	 * @param b
-	 * @return parent of a sub-tree for sub-tree split function. the parent's weight must in [b/2 , b].
-	 * this function finds sub-tree recursively.
+	 * @return
 	 */
 	private Node subtree(Node node, int b) {
 		if (node.getWeight() <= b && node.getWeight() >= b / 2) {

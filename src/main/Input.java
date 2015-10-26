@@ -15,8 +15,9 @@ public class Input {
 	BinaryTrie tree;
 
 	/**
+     * Create and returns a binary trie from prefixes in "input.txt" file.
+     *
 	 * @author Soroush
-	 * creates and returns a binary trie from prefixes in "input.txt" file
 	 * @return
 	 */
 	public BinaryTrie treeFromFile() {
@@ -51,8 +52,9 @@ public class Input {
 	}
 	
 	/**
+     * Create bucket-list, Reads prefixes per bucket from file.
+     *
 	 * @author Soroush
-	 * creates bucket-list. reads prefixes per bucket from file
 	 * @return
 	 */
 	public BucketList getBucketsFromFile() {
@@ -75,57 +77,5 @@ public class Input {
 
 		return bucks;
 	}
-	
-//	public BinaryTrie treeFromConsole() {
-//		System.out.println("please enter prefixes, type in 'done' when done:");
-//
-//		BinaryTrie tree = new BinaryTrie();
-//		Scanner input = new Scanner(System.in);
-//		String prefix = "";
-//		
-//		boolean done = false;
-//
-//		while (!done) {
-//			prefix = input.next();
-//			String mask = "";
-//			String ip = prefix.substring(0, prefix.length() - 1);
-//			
-//			if (prefix.toLowerCase().equals("done")) {
-//				done = true;
-//				continue;
-//			}
-//			
-//			for (int i = 0; i < ip.length(); i++) {
-//				mask += "1";
-//			}
-//			for (int i = ip.length(); i < 32; i++) {
-//				mask += "0";
-//				ip += "0";
-//			}
-//			tree.add(new Node(ip, mask));
-//		}
-//		return tree;
-//	}
-//	
-//	public BucketList getBucketsFromConsole() {
-//		System.out.println("please enter number of buckets:");
-//		
-//		BucketList bucks = new BucketList();
-//		Scanner input = new Scanner(System.in);
-//		int buckNo = Integer.parseInt(input.next());
-//		
-//		System.out.println("please enter number of prefixes in one bucket:");
-//		int prefixes = Integer.parseInt(input.next());
-//		bucks.setPrefixes(prefixes);
-//		
-//		for (int i = 0; i < buckNo; i++) {
-//			ArrayList<Node> nodes = new ArrayList<Node>();
-//			Bucket buck = new Bucket(prefixes);
-//			buck.setNodes(nodes);
-//			bucks.add(buck);
-//		}
-//		
-//		return bucks;
-//	}
 	
 }

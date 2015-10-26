@@ -12,7 +12,8 @@ public class BinaryTrie {
 
 	/**
 	 * @author Soroush
-	 * constructor of binary trie object. this function builds a root node and sets it's ip and mask to "00...0".
+     *
+	 * Constructor of binary trie object. this function builds a root node and sets it's ip and mask to "00...0".
 	 */
 	public BinaryTrie() {
 		String ip = "", mask = "";
@@ -24,15 +25,18 @@ public class BinaryTrie {
 	}
 
 	/**
+     * Setter for root node.
+     *
 	 * @author Soroush
 	 * @param root
-	 * setter for root node.
 	 */
 	public void setRoot(Node root) {
 		this.root = root;
 	}
 
 	/**
+     * Getter for root node.
+     *
 	 * @author Soroush
 	 * @return root node of trie
 	 */
@@ -41,18 +45,23 @@ public class BinaryTrie {
 	}
 
 	/**
+     * Check if the trie is empty.
+     *
 	 * @author Soroush
-	 * @return true if the trie is empty.
+	 * @return
 	 */
 	public boolean isEmpty() {
 		return !this.getRoot().isNexthop() && !this.getRoot().hasLeft() && !this.getRoot().hasRight();
 	}
 
 	/**
+     * Append a node to the tire. Return true if the input node is added to trie and
+     * false if the node is already exists in trie or can't be added. This add
+     * function uses a VLR (visit-left-right) algorithm for searchin in trie.
+     *
 	 * @author Soroush
 	 * @param node
-	 * @return true if the input node is added to trie and false if the node is already exists in trie or can't be added.
-	 * this add function uses a VLR (visit-left-right) algorithm for searchin in trie.
+	 * @return
 	 */
 	public boolean add(Node node) {
 		Node parent = this.getRoot(); // a cursor node for visiting nodes
@@ -82,10 +91,12 @@ public class BinaryTrie {
 	}
 
 	/**
+     * Search for a specific node. Return true if the node exists in trie,
+     * otherwise false. This function is not used in this project. so we will not comment in it.
+     *
 	 * @author Soroush
 	 * @param node
-	 * @return true if the node exists in trie, otherwise false.
-	 * this function is not used in this project. so we will not comment in it.
+	 * @return
 	 */
 	public boolean search(Node node) {
 		Node parent = this.getRoot();
@@ -112,11 +123,14 @@ public class BinaryTrie {
 	}
 
 	/**
+     * Remove a specific node from trie. Return true if input node is deleted from
+     * trie successfully. Otherwise returns false. Just unsets the isNexthop of
+     * node in trie if it finds the node. Then it calls clear function. Uses
+     * VLR (visit-left-right) algorithm.
+     *
 	 * @author Soroush
 	 * @param node
-	 * @return true if input node is deleted from trie successfully. otherwise returns false.
-	 * just unsets the isNexthop of node in trie if it finds the node. then it calls clear function.
-	 * uses VLR (visit-left-right) algorithm.
+	 * @return
 	 */
 	public boolean remove(Node node) {
 		if (!this.search(node)) { // node must be in trie, otherwise removing is unsuccessful.
@@ -145,11 +159,14 @@ public class BinaryTrie {
 	}
 
 	/**
+     * Clears null leafs from trie. a null leaf is a leaf that does
+     * not contains a prefix. It calls after deletion. this
+     * function uses a LRV algorithm. This is a recursive
+     * algorithm.
+     *
 	 * @author Soroush
 	 * @param node
 	 * @param parent
-	 * clears null leafs from trie. a null leaf is a leaf that does not contains a prefix.
-	 * it calls after deletion. this function uses a LRV algorithm. this is a recursive algorithm.
 	 */
 	private void clear(Node node, Node parent) {
 		if (node.hasRight()) {
@@ -175,10 +192,13 @@ public class BinaryTrie {
 	}
 	
 	/**
+     * Get string of ancestor of input node in this trie. This function
+     * used in finding covering prefixes in our algorithms. This
+     * function uses VLR algorithm.
+     *
 	 * @author Soroush
 	 * @param node
-	 * @return prefix string of ancestor of input node in this trie. this function used in finding covering prefixes in our algorithms.
-	 * this function uses VLR algorithm.
+	 * @return prefix
 	 */
 	public String getAncestor(Node node) {
 		if (!this.search(node)) {
@@ -214,10 +234,14 @@ public class BinaryTrie {
 	}
 	
 	/**
+     * Get parent node of input node in this trie. We do not
+     * store the address of parent node in the node. We
+     * must search the trie to find it's parent node.
+     * This function is not used in our project.
+     *
 	 * @author Soroush
 	 * @param node
-	 * @return gets parent node of input node in this trie. we do not store the address of parent node in the node.
-	 * we must search the trie to find it's parent node. this function is not used in our project.
+	 * @return
 	 */
 	public Node getParent(Node node) {
 		Node parent = this.root;
@@ -243,8 +267,9 @@ public class BinaryTrie {
 	}
 	
 	/**
+     * Return string encoded of binary trie.
+     *
 	 * @author Soroush
-	 * for testing purposes.
 	 */
 	@Override
 	public String toString() {
@@ -266,27 +291,5 @@ public class BinaryTrie {
 
 		return ret;
 	}
-	
-//	public static void main(String[] args) {
-//		Node n1 = new Node("10111", "10000"); // 1*
-//		Node n2 = new Node("01011", "11000"); // 01*
-//		Node n3 = new Node("00011", "11100"); // 000*
-//		Node n4 = new Node("11001", "11000"); // 11*
-//		Node n5 = new Node("00111", "11110"); // 0011*
-//
-//		BinaryTrie b = new BinaryTrie();
-//		b.add(n1);
-//		b.add(n2);
-//		b.add(n3);
-//		b.add(n4);
-//		b.add(n3);
-//		b.add(n5);
-//		System.out.println(b);
-//		b.remove(n1);
-//		b.remove(n2);
-//		b.remove(n3);
-//		b.remove(n4);
-//		b.remove(n5);
-//		System.out.println(b);
-//	}
+
 }

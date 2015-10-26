@@ -3,10 +3,12 @@ package objects;
 import java.util.ArrayList;
 
 /**
+ * This is the bucket object. each bucket has an array-list of nodes, indexes
+ * and coverings in it. Capacity is number of prefixes that can be added to
+ * this bucket. Each index, covering and node in this object is a string
+ * containing '1', '0' and '*' and the end of it.
+ *
  * @author Soroush
- * this is the bucket object. each bucket has an array-list of nodes, indexes and coverings in it.
- * capacity is number of prefixes that can be added to this bucket.
- * each index, covering and node in this object is a string containing '1', '0' and '*' and the end of it.
  */
 public class Bucket {
 	ArrayList<String> nodes;
@@ -15,8 +17,9 @@ public class Bucket {
 	int capacity = 0;
 
 	/**
+     * Cunstroctor of object.
+     *
 	 * @author Soroush
-	 * the cunstroctor of object
 	 * @param capacity
 	 */
 	public Bucket(int capacity) {
@@ -27,19 +30,24 @@ public class Bucket {
 	}
 
 	/**
+     * Check if bucket has a specific index. Returns true if the bucket has input index.
+     *
 	 * @author Soroush
 	 * @param index
-	 * @return true if the bucket has input index.
+	 * @return
 	 */
 	public boolean hasIndex(String index) {
 		return this.indexes.contains(index);
 	}
 	
 	/**
+     * Add a specific index to bucket. Get and input index and adds it to
+     * indexes array. It removes an index from index list if the input
+     * index string is parent of it in tree.
+     *
 	 * @author Soroush
 	 * @param index
-	 * gets and input index and adds it to indexes array.
-	 * it removes an index from index list if the input index string is parent of it in tree.
+	 *
 	 */
 	public void addIndex(String index) {
 		if (!hasIndex(index)) {
@@ -59,18 +67,20 @@ public class Bucket {
 	}
 	
 	/**
+     * Check if bucket has a covering set. Returns true if bucket has input covering node.
 	 * @author Soroush
 	 * @param covering
-	 * @return true if bucket has input covering node.
+	 * @return
 	 */
 	public boolean hasCovering(String covering) {
 		return this.covering.contains(covering);
 	}
 	
 	/**
+     * Add a covering prefix to bucket's covering list.
+     *
 	 * @author Soroush
 	 * @param covering
-	 * adds a covering prefix to bucket's covering list.
 	 */
 	public void addCovering(String covering) {
 		if (!hasCovering(covering)) {
@@ -79,26 +89,30 @@ public class Bucket {
 	}
 	
 	/**
+     * Get number of possible coverings that can be added until the bucket become full.
+     *
 	 * @author Soroush
-	 * @return number of possible coverings that can be added until the bucket become full.
+	 * @return
 	 */
 	public int getFreeCovering() {
 		return this.capacity - this.covering.size();
 	}
 	
 	/**
+     * Get string of prefix from input index of prefix.
 	 * @author Soroush
 	 * @param index
-	 * @return string of prefix from input index of prefix.
+	 * @return
 	 */
 	public String getNode(int index) {
 		return nodes.get(index) != null ? nodes.get(index) : null;
 	}
 
 	/**
+     * Add input node into node list of bucket if the node doesn't exists in node list.
+     *
 	 * @author Soroush
 	 * @param node
-	 * adds input node into node list of bucket if the node doesn't exists in node list.
 	 */
 	public void addNode(Node node) {
 		if (!this.isFull()) {
@@ -107,33 +121,38 @@ public class Bucket {
 	}
 
 	/**
+     * Return true if the bucket is full. Size of node list is equal to bucket capacity.
 	 * @author Soroush
-	 * @return true if the bucket is full. size of node list is equal to bucket capacity.
+	 * @return
 	 */
 	public boolean isFull() {
 		return nodes.size() >= capacity;
 	}
 
 	/**
+     * Setter for nodes array in bucket.
+     *
 	 * @author Soroush
 	 * @param nodes
-	 * setter for nodes array in bucket.
 	 */
 	public void setNodes(ArrayList<String> nodes) {
 		this.nodes = nodes;
 	}
 	
 	/**
+     * Get number of possible nodes that can be added to bucket from now on.
+     *
 	 * @author Soroush
-	 * @return number of possible nodes that can be added to bucket from now on.
+	 * @return
 	 */
 	public int getFree() {
 		return this.capacity - this.nodes.size();
 	}
 
 	/**
+     * Bucket to string function.
+     *
 	 * @author Soroush
-	 * prints bucket. (for testing)
 	 */
 	@Override
 	public String toString() {

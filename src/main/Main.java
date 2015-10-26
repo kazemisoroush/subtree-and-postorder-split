@@ -6,9 +6,9 @@ import objects.BinaryTrie;
 import objects.BucketList;
 
 public class Main {
+
 	/**
 	 * @author Soroush
-	 * runs project
 	 * @param args
 	 */
 	public static void main(String[] args) {

@@ -2,6 +2,13 @@ package algorithm;
 
 public class Binary {
 
+    /**
+     * Binary and operation.
+     *
+     * @param ip
+     * @param mask
+     * @return
+     */
 	public static String and(String ip, String mask) {
 		String ret = "";
 		for (int i = 0; i < ip.length(); i++) {
@@ -14,6 +21,13 @@ public class Binary {
 		return ret;
 	}
 
+    /**
+     * Compare two input binary strings.
+     *
+     * @param bin1
+     * @param bin2
+     * @return
+     */
 	public static int compare(String bin1, String bin2) {
 		int int1 = Integer.parseInt(bin1, 2);
 		int int2 = Integer.parseInt(bin2, 2);
